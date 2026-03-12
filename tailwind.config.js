@@ -33,7 +33,7 @@ export default {
         heading: ['"Space Grotesk"', "sans-serif"],
         drama: ['"Cormorant Garamond"', "serif"],
         mono: ['"IBM Plex Mono"', "monospace"],
-        body: ['system-ui', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        body: ['"Inter"', 'sans-serif'],
       },
       borderRadius: {
         '2xl': '2rem',
