@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benny B Barbershop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
+  <style>
+    body { margin: 0; overflow-y: auto; overflow-x: hidden; background: #0a0a0a; color: #fff; font-family: 'Inter', sans-serif; cursor: none;}
+    h1, h2, h3 { font-family: 'Syne', sans-serif; }
+    
+    /* Background Image with Overlay */
+    .bg-main {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url('https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?q=80&w=2000') center/cover;
+      background-position: center;
+    }
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.4) 100%);
+    }
+
+    /* Paper.js Canvas */
+    #liquid-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; mix-blend-mode: color-dodge; opacity: 0.2; pointer-events: none;}
+
+    /* Custom Cursor */
+    .cursor-dot { width: 8px; height: 8px; background: #DAA520; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); z-index: 9999; pointer-events: none; transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);}
+    .cursor-hover { width: 60px; height: 60px; background: rgba(218, 165, 32, 0.1); border: 1px solid rgba(218, 165, 32, 0.5); backdrop-filter: blur(2px);}
+
+    /* Glassmorphism UI */
+    .glass-panel {
+      background: rgba(10, 10, 10, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Utilitarian Solid Panels */
+    .solid-panel {
+      background: rgba(15, 15, 15, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Form Inputs */
+    .util-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    .util-input:focus {
+      border-color: #DAA520;
+    }
+
+    /* Chromatic "Only Paper" Button - GOLD EDITION */
+    .chrome-btn-wrapper {
+      position: relative;
+      display: inline-flex;
+      border-radius: 9999px;
+      padding: 2px; /* Border thickness */
+      overflow: hidden;
+      cursor: none;
+    }
+    .chrome-btn-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 300%; height: 300%;
+      background: conic-gradient(from 0deg, #111, #DAA520, #FFF, #DAA520, #111);
+      transform: translate(-50%, -50%);
+      animation: spin 4s linear infinite;
+    }
+    .chrome-btn {
+      position: relative;
+      background: linear-gradient(135deg, rgba(30,30,30,0.95) 0%, rgba(10,10,10,0.95) 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 9999px;
+      padding: 1.25rem 3.5rem;
+      font-weight: 700;
+      color: #DAA520;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.85rem;
+      z-index: 1;
+      /* Specular highlight & Inner depth */
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 6px rgba(0,0,0,0.5), 0 4px 15px rgba(218,165,32,0.2);
+      transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), background 0.3s;
+    }
+    .chrome-btn-wrapper:hover .chrome-btn {
+      background: linear-gradient(135deg, rgba(218,165,32,0.9) 0%, rgba(184,134,11,0.9) 100%);
+      color: #111;
+      transform: scale(0.97);
+    }
+    .chrome-text {
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* Typography */
+    .title-white {
+      color: #FFF;
+      text-transform: uppercase;
+      font-weight: 800;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .gold-accent {
+      color: #DAA520;
+    }
+
+    .reveal-wrap { overflow: hidden; display: inline-block; vertical-align: bottom; padding-bottom: 0.15em; margin-bottom: -0.15em;}
+    .reveal-text { display: inline-block; transform: translateY(110%) skewY(5deg); transform-origin: top left;}
+
+    /* Service List Items */
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: color 0.3s, padding-left 0.3s;
+    }
+    .service-row:hover {
+      color: #DAA520;
+      padding-left: 1rem;
+    }
+
+  </style>
+</head>
+<body class="w-full relative">
+
+  <div class="bg-main"></div>
+  <div class="bg-overlay"></div>
+  <canvas id="liquid-canvas"></canvas>
+  <div class="cursor-dot"></div>
+
+  <!-- Main Container -->
+  <div class="relative z-10 w-full flex flex-col items-center">
+    
+    <!-- Nav -->
+    <nav class="glass-panel w-full max-w-7xl mx-auto rounded-full px-8 py-4 flex justify-between items-center pointer-events-auto mt-6 opacity-0 translate-y-[-20px]" id="nav">
+      <div class="text-xl font-bold tracking-tighter uppercase text-white" style="font-family: 'Syne'">Benny B<span class="gold-accent">.</span></div>
+      <div class="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-[0.2em] text-gray-300">
+        <a href="#services" class="hover:text-white transition-colors" data-cursor="hover">Services</a>
+        <a href="#about" class="hover:text-white transition-colors" data-cursor="hover">About</a>
+        <a href="#book" class="hover:text-white transition-colors" data-cursor="hover">Location</a>
+      </div>
+      <div class="pointer-events-auto" data-cursor="hover">
+        <a href="#book" class="chrome-btn-wrapper" style="padding: 1px;">
+          <div class="chrome-btn" style="padding: 0.75rem 2rem; font-size: 0.7rem;">
+            <span class="chrome-text">Book Now</span>
+          </div>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="w-full max-w-7xl mx-auto min-h-[85vh] flex flex-col justify-center items-start px-6 md:px-10 pointer-events-none">
+      <div class="mb-6 reveal-wrap">
+        <span class="reveal-text inline-block px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/20 text-xs font-bold tracking-[0.3em] uppercase text-white shadow-lg">Premium Grooming</span>
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.05] tracking-wide mb-8 max-w-4xl relative z-10 title-white">
+        <span class="reveal-wrap"><span class="reveal-text">BENNY B</span></span><br>
+        <span class="reveal-wrap"><span class="reveal-text">BARBERSHOP</span></span>
+      </h1>
+      
+      <p class="text-sm md:text-lg text-gray-300 max-w-xl mb-12 leading-relaxed opacity-0 translate-y-4 font-normal" id="hero-desc">
+        Welcome to Benny B. We specialize in classic cuts, modern styling, and traditional hot towel shaves. Expert barbers delivering precise attention to detail in a utilitarian, no-nonsense environment.
+      </p>
+
+      <div class="pointer-events-auto opacity-0 translate-y-4" id="hero-btn" data-cursor="hover">
+        <a href="#book" class="chrome-btn-wrapper">
+          <div class="chrome-btn">
+            <span class="chrome-text">Schedule Appointment</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="w-full max-w-7xl mx-auto px-6 md:px-10 py-24 pointer-events-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-8">Service Menu<span class="gold-accent">.</span></h2>
+          <p class="text-gray-400 max-w-md leading-relaxed mb-8">
+            Our straightforward, high-quality service offerings. No gimmicks, just excellent craftsmanship tailored to your specifications.
+          </p>
+        </div>
+        
+        <div class="solid-panel p-8 md:p-12 rounded-2xl" data-cursor="hover">
+          <div class="service-row">
+            <div>
+              <h3 class="text-xl font-bold uppercase tracking-wide">Signature Haircut</h3>
+              <p class="text-sm text-gray-400 mt-1">Consultation, precision cut, wash, and style.</p>
+            </div>
+            <div class="text-2xl font-bold gold-accent">$45</div>
+          </div>
+          
+          <div class="service-row">
+            <div>
+              <h3 class="text-xl font-bold uppercase tracking-wide">Skin Fade</h3>
+              <p class="text-sm text-gray-400 mt-1">Bald fade, hot towel finish, style.</p>
+            </div>
+            <div class="text-2xl font-bold gold-accent">$50</div>
+          </div>
+          
+          <div class="service-row">
+            <div>
+              <h3 class="text-xl font-bold uppercase tracking-wide">Beard Trim & Line up</h3>
+              <p class="text-sm text-gray-400 mt-1">Sculpting, straight razor lineup, beard oil treatment.</p>
+            </div>
+            <div class="text-2xl font-bold gold-accent">$30</div>
+          </div>
+          
+          <div class="service-row border-b-0">
+            <div>
+              <h3 class="text-xl font-bold uppercase tracking-wide">The Full Service</h3>
+              <p class="text-sm text-gray-400 mt-1">Haircut, beard trim, and traditional hot towel shave.</p>
+            </div>
+            <div class="text-2xl font-bold gold-accent">$70</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking / Contact Section -->
+    <section id="book" class="w-full bg-black/80 backdrop-blur-md py-24 border-t border-white/10 pointer-events-auto">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
+        
+        <!-- Location Info -->
+        <div class="flex flex-col justify-center">
+          <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-6">Location & Hours<span class="gold-accent">.</span></h2>
+          <p class="text-gray-400 max-w-md leading-relaxed mb-8">
+            Drop by for a walk-in, or secure your spot by booking ahead. We are located in the heart of the business district.
+          </p>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Address</h4>
+              <p class="text-lg">1204 Industry Avenue<br>Commerce District, NY 10001</p>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Hours</h4>
+              <p class="text-lg">Mon - Fri: 9AM - 7PM<br>Sat: 10AM - 5PM<br>Sun: Closed</p>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Contact</h4>
+              <p class="text-lg">(555) 019-2847<br>hello@bennyb.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="solid-panel p-8 md:p-12 rounded-2xl">
+          <h3 class="text-2xl font-bold uppercase tracking-wide mb-6">Request Appointment</h3>
+          <form class="space-y-4" data-cursor="hover">
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="First Name" class="util-input rounded-md">
+              <input type="text" placeholder="Last Name" class="util-input rounded-md">
+            </div>
+            <input type="email" placeholder="Email Address" class="util-input rounded-md">
+            <input type="tel" placeholder="Phone Number" class="util-input rounded-md">
+            <select class="util-input rounded-md appearance-none text-gray-300">
+              <option value="" disabled selected>Select Service</option>
+              <option value="haircut">Signature Haircut</option>
+              <option value="fade">Skin Fade</option>
+              <option value="beard">Beard Trim</option>
+              <option value="full">The Full Service</option>
+            </select>
+            <div class="pt-4">
+              <button type="button" class="chrome-btn-wrapper w-full">
+                <div class="chrome-btn w-full text-center">
+                  <span class="chrome-text">Confirm Booking</span>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="w-full max-w-7xl mx-auto px-6 md:px-10 py-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 uppercase tracking-widest pointer-events-auto font-bold border-t border-white/10">
+      <div>© 2026 Benny B Barbershop. All Rights Reserved.</div>
+      <div class="flex gap-6 mt-4 md:mt-0">
+        <a href="#" class="hover:text-white transition-colors">Instagram</a>
+        <a href="#" class="hover:text-white transition-colors">Twitter</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // --- Custom Cursor ---
+    const cursor = document.querySelector('.cursor-dot');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    
+    // Setup hover listeners using event delegation for dynamic additions
+    document.body.addEventListener('mouseover', (e) => {
+      if (e.target.closest('[data-cursor="hover"]')) {
+        cursor.classList.add('cursor-hover');
+      }
+    });
+    document.body.addEventListener('mouseout', (e) => {
+      if (e.target.closest('[data-cursor="hover"]')) {
+        cursor.classList.remove('cursor-hover');
+      }
+    });
+
+    // --- GSAP Animations (Hero Only) ---
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.to('#nav', { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out' })
+      .to('.reveal-text', { y: '0%', skewY: 0, duration: 1.4, ease: 'power4.out', stagger: 0.15 }, "-=0.8")
+      .to('#hero-desc', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }, "-=1")
+      .to('#hero-btn', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }, "-=1");
+
+    // --- Paper.js Liquid Gold Background ---
+    paper.install(window);
+    window.onload = function() {
+      // Create canvas context programmatically for fixed background handling
+      paper.setup('liquid-canvas');
+      
+      let mousePoint = view.center;
+      let amount = 5; // Less points for smoother blob
+      let height = view.size.height;
+      
+      let path = new Path({
+        fillColor: new paper.Color(0.85, 0.65, 0.12, 0.6), // Liquid Gold
+        closed: true
+      });
+      
+      // Build path segments
+      for (var i = 0; i <= amount; i++) {
+        path.add(new Point(i / amount * view.size.width, 1));
+      }
+      path.add(new Point(view.size.width, view.size.height));
+      path.add(new Point(0, view.size.height));
+
+      view.onFrame = function(event) {
+        for (var i = 0; i <= amount; i++) {
+          var segment = path.segments[i];
+          var sinus = Math.sin(event.time * 1.5 + i);
+          
+          // Base fluid wave - positioned at bottom of the canvas
+          segment.point.y = sinus * 80 + height * 0.8;
+          
+          // Magnetic reaction to mouse
+          if(mousePoint) {
+            let dx = mousePoint.x - segment.point.x;
+            let dy = mousePoint.y - segment.point.y; 
+            let dist = Math.sqrt(dx*dx + dy*dy);
+            
+            if(dist < 500) {
+              segment.point.y += (500 - dist) * 0.2; // smooth pull up
+            }
+          }
+        }
+        path.smooth();
+      }
+      
+      // Native event listener for window to track mouse regardless of paper scope
+      window.addEventListener('mousemove', function(e) {
+        // Track absolute viewport coordinates
+        mousePoint = new Point(e.clientX, e.clientY);
+      });
+      
+      view.onResize = function(event) {
+        height = view.size.height;
+        path.segments[amount + 1].point = new Point(view.size.width, view.size.height);
+        path.segments[amount + 2].point = new Point(0, view.size.height);
+        for (var i = 0; i <= amount; i++) {
+          path.segments[i].point.x = i / amount * view.size.width;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

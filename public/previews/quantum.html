@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;400;600;800&display=swap');
+:root {
+  --bg: #F5F3EE;
+  --text: #111111;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; min-height: 100vh; width: 100vw; }
+
+.bg-grid {
+  position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+  background-image: linear-gradient(var(--text) 1px, transparent 1px), linear-gradient(90deg, var(--text) 1px, transparent 1px);
+  background-size: 60px 60px; background-position: center;
+  opacity: 0.03; transform: scaleY(0.5) rotate(45deg); pointer-events: none; z-index: 0;
+}
+
+.split { display: flex; flex-direction: column; min-height: 100vh; width: 100vw; position: relative; z-index: 10; }
+@media (min-width: 1024px) {
+  .split { flex-direction: row; height: 100vh; }
+}
+.pane { flex: 1; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 2rem; min-height: 50vh;}
+@media (min-width: 1024px) {
+  .pane { padding: 5rem; }
+  .pane.left { border-right: 1px solid rgba(0,0,0,0.1); }
+}
+.pane.right { background: #050505; overflow: hidden; }
+
+.nav { position: absolute; top: 0; left: 0; right: 0; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 20; mix-blend-mode: difference; color: white;}
+@media (min-width: 1024px) {
+  .nav { padding: 2rem 5rem; }
+}
+.nav .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem;}
+.nav .logo::before { content:''; display: block; width: 16px; height: 16px; border: 2px solid #FFF; }
+.nav .links { display: none; }
+@media (min-width: 1024px) {
+  .nav .links { position: absolute; left: 25%; transform: translateX(-50%); display: flex; gap: 3rem; font-family: var(--mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+}
+.nav .links a { text-decoration: none; color: #FFF; transition: opacity 0.3s; }
+.nav .links a:hover { opacity: 0.7; }
+.nav .links a::before { content: '// '; opacity: 0.4; }
+.nav .right { display: flex; align-items: center; gap: 1rem;}
+@media (min-width: 1024px) {
+  .nav .right { gap: 2rem; position: absolute; right: 5rem;}
+}
+.nav .lang { font-family: var(--mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; display: none; }
+@media (min-width: 1024px) {
+  .nav .lang { display: block; }
+}
+.nav .cta { background: #FFF; color: #000; padding: 0.5rem 1.5rem; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.nav .cta:hover { transform: scale(1.05); }
+
+.circuit-bg { position: absolute; bottom: -15%; left: -15%; width: 70vh; height: 70vh; border: 1px solid var(--text); opacity: 0.05; transform: rotate(-25deg); pointer-events:none; }
+.circuit-bg::before { content:''; position:absolute; top:10%; left:10%; right:10%; bottom:10%; border:1px dashed var(--text); border-radius:50%; }
+
+.content { position: relative; z-index: 2; max-width: 550px; margin-top: 4rem;}
+@media (min-width: 1024px) {
+  .content { margin-top: 0; }
+}
+.overline { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.25em; opacity: 0.5; margin-bottom: 1.5rem; text-transform: uppercase; }
+.title { font-size: 2.5rem; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+@media (min-width: 768px) {
+  .title { font-size: 4rem; }
+}
+.title str { font-weight: 800; display: block; }
+.title lgt { font-weight: 200; display: block; }
+.desc { font-family: var(--mono); font-size: 0.8rem; line-height: 1.7; opacity: 0.7; margin-bottom: 2.5rem; max-width: 450px;}
+
+.buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { position: relative; padding: 1rem 2rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; background: transparent; letter-spacing: 0.05em; transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);}
+.btn:hover { transform: translateY(-2px); }
+.btn-glass { background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); color: var(--text); }
+.btn-solid { background: var(--text); color: var(--bg); }
+.bracket { position: absolute; width: 6px; height: 6px; border: 1.5px solid var(--text); }
+.bracket.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.bracket.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.bracket.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.bracket.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.stats { display: flex; gap: 1rem; z-index: 5; margin-top: 3rem; flex-wrap: wrap;}
+@media (min-width: 1024px) {
+  .stats { position: absolute; bottom: 4rem; left: 5rem; margin-top: 0;}
+}
+.stat-box { position: relative; width: calc(50% - 0.5rem); height: 90px; background: rgba(255,255,255,0.5); backdrop-filter: blur(20px); display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid rgba(0,0,0,0.05);}
+@media (min-width: 768px) {
+  .stat-box { width: 100px; height: 100px; }
+}
+.stat-val { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.25rem; }
+.stat-lbl { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; opacity: 0.6; text-transform: uppercase; font-weight: 700;}
+
+canvas { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; }
+.glow { position: absolute; top: 50%; left: 50%; width: 80vw; height: 80vw; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, rgba(255,0,255,0.05) 40%, transparent 70%); z-index: 0; pointer-events:none; mix-blend-mode: screen; }
+
+.hud { position: absolute; z-index: 10; pointer-events: none; display: none; }
+@media (min-width: 768px) {
+  .hud { display: block; }
+}
+.hud-label { position: relative; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); color: #FFF; font-family: var(--mono); font-size: 0.6rem; padding: 0.75rem 1.25rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700;}
+.hud-label .bracket { border-color: rgba(255,255,255,0.5); }
+.hud-line { position: absolute; background: rgba(0,255,255,0.4); }
+.hud-target { position: absolute; width: 4px; height: 4px; border: 1px solid #0FF; border-radius: 50%; background: transparent; transform: translate(-50%, -50%); }
+
+.hud1 { top: 25%; left: 15%; }
+.hud1 .hud-line { top: 50%; left: 100%; width: 120px; height: 1px; }
+.hud1 .hud-target { top: 50%; left: calc(100% + 120px); }
+
+.hud2 { bottom: 30%; right: 15%; }
+.hud2 .hud-line { top: 50%; right: 100%; width: 100px; height: 1px; }
+.hud2 .hud-target { top: 50%; right: calc(100% + 100px); }
+
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<nav class="nav">
+  <div class="logo">OmniPulse Agency</div>
+  <div class="links">
+    <a href="#">Core</a>
+    <a href="#">Synapse</a>
+    <a href="#">Topology</a>
+  </div>
+  <div class="right">
+    <span class="lang">v EN</span>
+    <button class="cta">Initialize</button>
+  </div>
+</nav>
+
+<div class="split">
+  <div class="pane left">
+    <div class="circuit-bg"></div>
+    <div class="content">
+      <div class="overline">// GENERATE ONCE, PUBLISH EVERYWHERE</div>
+      <h1 class="title">
+        <str>One piece of content.</str>
+        <lgt>Every platform. Instantly.</lgt>
+      </h1>
+      <p class="desc">
+        Zero-latency neural bridging protocol active. 
+        Quantum state routing enables simultaneous, 
+        frictionless publication across all multi-dimensional 
+        topologies natively. No degradation. Pure signal.
+      </p>
+      <div class="buttons">
+        <button class="btn btn-glass">
+          <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+          Sign in
+        </button>
+        <button class="btn btn-solid">Learn more</button>
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-box">
+        <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+        <div class="stat-val">128Q</div>
+        <div class="stat-lbl">Compute</div>
+      </div>
+      <div class="stat-box">
+        <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+        <div class="stat-val">0.01ms</div>
+        <div class="stat-lbl">Latency</div>
+      </div>
+      <div class="stat-box">
+        <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+        <div class="stat-val">99.9%</div>
+        <div class="stat-lbl">Fidelity</div>
+      </div>
+      <div class="stat-box">
+        <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+        <div class="stat-val">∞</div>
+        <div class="stat-lbl">Nodes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pane right" id="canvas-container">
+    <div class="glow"></div>
+    
+    <div class="hud hud1">
+      <div class="hud-label">
+        <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+        Cryo-State: 15mK
+      </div>
+      <div class="hud-line"></div>
+      <div class="hud-target"></div>
+    </div>
+
+    <div class="hud hud2">
+      <div class="hud-label">
+        <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+        Entanglement Ratio
+      </div>
+      <div class="hud-line"></div>
+      <div class="hud-target"></div>
+    </div>
+    
+    <canvas id="mc"></canvas>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('mc');
+const gl = canvas.getContext('webgl', { antialias: false, alpha: false, preserveDrawingBuffer: false });
+const container = document.getElementById('canvas-container');
+
+function resize() {
+  const rect = container.getBoundingClientRect();
+  canvas.width = rect.width * window.devicePixelRatio;
+  canvas.height = rect.height * window.devicePixelRatio;
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  if(projLoc) {
+    const aspect = canvas.width / canvas.height;
+    proj[0] = 1/aspect * 0.6;
+    gl.uniformMatrix4fv(projLoc, false, proj);
+  }
+}
+
+const numParticles = 100000;
+const vs = `
+  attribute vec3 position;
+  attribute vec3 color;
+  attribute float speedOffset;
+  
+  varying vec3 vColor;
+  uniform float time;
+  uniform mat4 proj;
+  
+  void main() {
+    vColor = color;
+    vec3 p = position;
+    
+    float t = time * (0.1 + speedOffset * 0.2);
+    float angle = t + p.y * 2.5;
+    float s = sin(angle);
+    float c = cos(angle);
+    
+    p.x = position.x * c - position.z * s;
+    p.z = position.x * s + position.z * c;
+
+    // Organic breathing effect
+    float pulse = sin(time * 2.0 + length(p) * 4.0) * 0.1 + 0.9;
+    p *= pulse;
+    
+    // Add some turbulence
+    p.x += sin(time * 3.0 + p.y * 5.0) * 0.05;
+    p.y += cos(time * 2.5 + p.x * 5.0) * 0.05;
+
+    gl_Position = proj * vec4(p, 1.0);
+    
+    // Depth-based point sizing
+    float depth = gl_Position.z;
+    float size = (1.5 - depth * 0.3) * (1.0 + speedOffset);
+    gl_PointSize = max(0.5, size);
+  }
+`;
+const fs = `
+  precision mediump float;
+  varying vec3 vColor;
+  void main() {
+    vec2 pt = gl_PointCoord - vec2(0.5);
+    float d = dot(pt, pt);
+    if(d > 0.25) discard;
+    
+    // Soft particle edge blending
+    float alpha = (0.25 - d) * 4.0;
+    gl_FragColor = vec4(vColor, alpha * 0.6); 
+  }
+`;
+
+function createShader(gl, type, source) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, source);
+  gl.compileShader(s);
+  return s;
+}
+
+const program = gl.createProgram();
+gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vs));
+gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fs));
+gl.linkProgram(program);
+gl.useProgram(program);
+
+const positions = new Float32Array(numParticles * 3);
+const colors = new Float32Array(numParticles * 3);
+const speeds = new Float32Array(numParticles);
+
+for(let i=0; i<numParticles; i++) {
+  let theta = Math.random() * Math.PI * 2;
+  let phi = Math.acos(2 * Math.random() - 1);
+  // Concentrated towards the core
+  let dist = Math.pow(Math.random(), 0.6) * 1.6;
+  
+  positions[i*3] = Math.sin(phi) * Math.cos(theta) * dist;
+  positions[i*3+1] = Math.sin(phi) * Math.sin(theta) * dist;
+  positions[i*3+2] = Math.cos(phi) * dist;
+  
+  speeds[i] = Math.random();
+
+  let tr = dist / 1.6;
+  if(tr < 0.2) {
+    // Ultra-hot core (Cyan/White)
+    colors[i*3] = 0.7 + Math.random()*0.3; 
+    colors[i*3+1] = 1.0; 
+    colors[i*3+2] = 1.0; 
+  } else if(tr < 0.5) {
+    // Neural mid-layer (Deep Blue/Violet)
+    colors[i*3] = 0.2 + Math.random()*0.2; 
+    colors[i*3+1] = 0.4 + Math.random()*0.4;
+    colors[i*3+2] = 1.0;
+  } else {
+    // Outer synapse edges (Fiery Magenta/Orange)
+    colors[i*3] = 1.0; 
+    colors[i*3+1] = 0.2 + Math.random()*0.3;
+    colors[i*3+2] = 0.4 + Math.random()*0.5;
+  }
+}
+
+const posBuf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+const posLoc = gl.getAttribLocation(program, 'position');
+gl.enableVertexAttribArray(posLoc);
+gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 0, 0);
+
+const colBuf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
+gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+const colLoc = gl.getAttribLocation(program, 'color');
+gl.enableVertexAttribArray(colLoc);
+gl.vertexAttribPointer(colLoc, 3, gl.FLOAT, false, 0, 0);
+
+const speedBuf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, speedBuf);
+gl.bufferData(gl.ARRAY_BUFFER, speeds, gl.STATIC_DRAW);
+const speedLoc = gl.getAttribLocation(program, 'speedOffset');
+gl.enableVertexAttribArray(speedLoc);
+gl.vertexAttribPointer(speedLoc, 1, gl.FLOAT, false, 0, 0);
+
+const timeLoc = gl.getUniformLocation(program, 'time');
+let projLoc = gl.getUniformLocation(program, 'proj');
+
+const proj = new Float32Array([
+  1, 0, 0, 0,
+  0, 1, 0, 0,
+  0, 0, 1, 0,
+  0, 0, 0, 1
+]);
+proj[5] = 0.6; // Y scale
+
+resize();
+window.addEventListener('resize', resize);
+
+gl.enable(gl.BLEND);
+// Additive blending for that glowing energetic look
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+gl.clearColor(0.02, 0.02, 0.03, 1.0);
+
+let start = Date.now();
+function render() {
+  let time = (Date.now() - start) / 1000;
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.uniform1f(timeLoc, time);
+  gl.drawArrays(gl.POINTS, 0, numParticles);
+  requestAnimationFrame(render);
+}
+render();
+</script>
+</body>
+</html>
