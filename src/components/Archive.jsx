@@ -32,7 +32,7 @@ export default function Archive() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
             <h2 className="font-heading font-bold text-5xl md:text-6xl tracking-tighter mb-4">The Archive.</h2>
-            <p className="font-body text-secondary text-xl max-w-xl">Live, interactive technical explorations. Experience the code natively—built, not drawn.</p>
+            <p className="font-drama italic text-secondary text-2xl max-w-xl">Live, interactive technical explorations. Experience the code natively—built, not drawn.</p>
           </div>
           
           {/* Device Toggles */}
