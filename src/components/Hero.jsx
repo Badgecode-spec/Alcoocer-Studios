@@ -31,11 +31,6 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="w-full h-full overflow-hidden bg-dark">
-          <img 
-            src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=3270&auto=format&fit=crop" 
-            alt="Dark Forest" 
-            className="w-full h-full object-cover grayscale-[20%] opacity-100 min-h-full min-w-full"
-          />
         </div>
         {/* Heavy primary to black gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-primary/80 to-transparent mix-blend-multiply opacity-90"></div>
