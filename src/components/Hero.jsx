@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowRight } from 'lucide-react';
+import LiquidBackground from './LiquidBackground';
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -30,6 +31,7 @@ export default function Hero() {
     >
       {/* Background with Dark Base */}
       <div className="absolute inset-0 z-0 bg-dark">
+        <LiquidBackground />
       </div>
 
       <div className="relative z-10 max-w-4xl text-[#F5F3EE]">
