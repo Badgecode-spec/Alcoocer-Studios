@@ -9,7 +9,7 @@ export default function Pricing() {
   ];
 
   const retainerPlans = [
-    { name: "Standard Retainer", price: "$89", desc: "Unlimited edits, updates, priority support, hosting included. BEST VALUE.", highlight: true },
+    { name: "Standard Retainer", price: "$89", desc: "Unlimited edits, updates, priority support, hosting included.", highlight: true },
     { name: "Premium Retainer", price: "$150", desc: "Unlimited edits + 1 new feature/month + analytics review + weekly check-in + content changes. For clients needing more features.", highlight: false }
   ];
 
