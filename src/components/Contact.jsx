@@ -1,41 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function Contact() {
-  const [status, setStatus] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    setStatus('sending');
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/alcocerstudios@yahoo.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data,
-          _subject: `New Lead: ${data.businessName} - ${data.businessType}`,
-        })
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        e.target.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      setStatus('error');
-    }
-
-    setTimeout(() => setStatus(''), 5000);
-  };
-
   return (
     <section id="contact" className="bg-accent text-[#F5F3EE] py-32 px-6">
       <div className="max-w-3xl mx-auto">
