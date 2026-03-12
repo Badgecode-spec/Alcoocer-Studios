@@ -45,8 +45,12 @@ export default function Contact() {
           <p className="font-body text-[#F5F3EE]/80 text-xl max-w-xl mx-auto">Drop your details below. We'll outline your complete built-for-conversion blueprint.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-dark/20 p-8 md:p-12 rounded-[3xl] shadow-inner backdrop-blur-sm border border-white/10 flex flex-col gap-6">
+        <form action="https://formsubmit.co/alcocerstudios@yahoo.com" method="POST" className="bg-dark/20 p-8 md:p-12 rounded-[3xl] shadow-inner backdrop-blur-sm border border-white/10 flex flex-col gap-6">
           
+          {/* FormSubmit Configuration */}
+          <input type="hidden" name="_subject" value="New Website Lead - Alcocer Studios" />
+          <input type="hidden" name="_captcha" value="true" />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col">
               <label className="font-mono text-xs uppercase tracking-widest mb-2 opacity-80">Full Name *</label>
@@ -93,23 +97,11 @@ export default function Contact() {
 
           <button 
             type="submit"
-            disabled={status === 'sending'}
-            className="mt-4 bg-primary text-[#F5F3EE] py-5 rounded-full font-heading font-bold text-xl tracking-wide hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-4 bg-primary text-[#F5F3EE] py-5 rounded-full font-heading font-bold text-xl tracking-wide hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 w-full"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
-            {status === 'sending' ? 'Sending...' : 'Start Your Website'}
+            Start Your Website
           </button>
-
-          {status === 'success' && (
-            <div className="mt-4 text-center font-body text-white bg-green-500/20 py-3 rounded-lg border border-green-500/30">
-              Thanks! I'll reach out within 24 hours.
-            </div>
-          )}
-          {status === 'error' && (
-            <div className="mt-4 text-center font-body text-white bg-red-500/20 py-3 rounded-lg border border-red-500/30">
-              Oops! Something went wrong. Please try again.
-            </div>
-          )}
 
         </form>
       </div>
