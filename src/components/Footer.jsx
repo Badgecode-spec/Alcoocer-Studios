@@ -36,8 +36,9 @@ export default function Footer() {
 
       </div>
 
-      <div className="mt-24 pt-8 border-t border-white/10 max-w-7xl mx-auto w-full text-center md:text-left flex flex-col md:flex-row justify-between text-secondary font-body text-sm">
+      <div className="mt-24 pt-8 border-t border-white/10 max-w-7xl mx-auto w-full text-center md:text-left flex flex-col md:flex-row justify-between items-center text-secondary font-body text-sm gap-4">
         <p>&copy; {new Date().getFullYear()} Alcocer Studios. All rights reserved.</p>
+        <p className="text-xs tracking-widest uppercase font-mono opacity-50">All prices are in USD.</p>
       </div>
 
     </footer>
