@@ -5,50 +5,50 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #0a0604; /* Very dark bronze/obsidian base */
+  background: #020617; /* Very deep, premium midnight blue */
   z-index: 0;
 }
 
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px); /* Increased blur for smoother, glass-like blending */
-  animation: moveBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.5; /* Lowered opacity for a subtle, premium look */
+  filter: blur(100px); /* Smooth, cloud-like blend */
+  animation: moveBlob 22s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.65;
   mix-blend-mode: screen;
 }
 
 .blob-1 {
-  background: #d48c3e; /* Muted glowing copper */
-  width: 60vw;
-  height: 60vw;
-  top: -10%;
+  background: #3b82f6; /* Clear, rich royal blue */
+  width: 65vw;
+  height: 65vw;
+  top: -15%;
   left: -10%;
   animation-duration: 25s;
 }
 
 .blob-2 {
-  background: #934b15; /* Deep rust/burnt orange */
-  width: 50vw;
-  height: 50vw;
-  top: 40%;
-  left: 50%;
+  background: #f97316; /* Clean, warm sunset orange */
+  width: 55vw;
+  height: 55vw;
+  top: 35%;
+  left: 45%;
   animation-duration: 22s;
   animation-delay: -5s;
 }
 
 .blob-3 {
-  background: #e7b056; /* Soft champagne gold */
-  width: 70vw;
-  height: 70vw;
-  bottom: -20%;
-  left: -20%;
+  background: #0ea5e9; /* Luminous cyan/light blue */
+  width: 75vw;
+  height: 75vw;
+  bottom: -25%;
+  left: -15%;
   animation-duration: 28s;
   animation-delay: -10s;
 }
 
 .blob-4 {
-  background: #5e290b; /* Very deep warm umber */
+  background: #fef08a; /* Soft, ethereal pale golden light */
   width: 45vw;
   height: 45vw;
   top: 10%;
