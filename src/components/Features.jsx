@@ -33,11 +33,11 @@ const ShufflerCard = () => {
   }, []);
 
   return (
-    <div className="relative h-64 w-full flex items-center justify-center">
+    <div className="relative h-64 w-full">
       {cards.map((card) => (
         <div
           key={card.id}
-          className="absolute w-full h-40 bg-white border border-borderlight rounded-[2rem] p-6 shadow-sm flex flex-col justify-center transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+          className="absolute bottom-0 w-full h-44 bg-white border border-borderlight rounded-[2rem] p-6 shadow-sm flex flex-col justify-center transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]"
           style={{
             zIndex: card.z,
             transform: `translateY(${card.y}px) scale(${card.scale})`,
