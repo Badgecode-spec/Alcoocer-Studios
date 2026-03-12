@@ -6,6 +6,21 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        scan: {
+          '0%': { top: '0%' },
+          '100%': { top: '100%' },
+        },
+        dash: {
+          'to': { strokeDashoffset: '0' },
+        }
+      },
+      animation: {
+        scan: 'scan 4s ease-in-out infinite alternate',
+        dash: 'dash 2s linear infinite',
+        'spin-slow': 'spin 10s linear infinite',
+        'spin-reverse': 'spin 15s linear infinite reverse',
+      },
       colors: {
         primary: "#2E4036",
         accent: "#E63B2E",

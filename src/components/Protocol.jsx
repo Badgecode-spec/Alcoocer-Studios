@@ -11,8 +11,8 @@ const protocols = [
     desc: "We extract your business value propositions and design a conversion architecture within hours, not weeks.",
     AnimationContent: () => (
       <div className="w-full h-full flex items-center justify-center relative">
-        <div className="absolute w-64 h-64 border border-accent/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-        <div className="absolute w-48 h-48 border border-accent/40 rounded-full animate-[spin_15s_linear_reverse_infinite]"></div>
+        <div className="absolute w-64 h-64 border border-accent/20 rounded-full animate-spin-slow"></div>
+        <div className="absolute w-48 h-48 border border-accent/40 rounded-full animate-spin-reverse"></div>
         <div className="w-32 h-32 bg-dark rounded-full flex items-center justify-center shadow-2xl relative z-10">
           <div className="w-16 h-1 rounded-full bg-accent animate-pulse"></div>
         </div>
@@ -30,7 +30,7 @@ const protocols = [
             <div key={i} className="bg-white rounded-sm w-full h-full"></div>
           ))}
         </div>
-        <div className="absolute left-0 top-0 w-full h-2 bg-accent shadow-[0_0_20px_#E63B2E] animate-[scan_4s_ease-in-out_infinite_alternate]"></div>
+        <div className="absolute left-0 top-0 w-full h-2 bg-accent shadow-[0_0_20px_#E63B2E] animate-scan"></div>
       </div>
     )
   },
@@ -42,7 +42,7 @@ const protocols = [
       <div className="w-full h-full flex items-center justify-center relative bg-dark rounded-3xl">
         <svg viewBox="0 0 200 100" className="w-full h-32 stroke-accent stroke-[3] fill-none" strokeLinecap="round" strokeLinejoin="round">
           <path 
-            className="animate-[dash_2s_linear_infinite]"
+            className="animate-dash"
             strokeDasharray="400"
             strokeDashoffset="400"
             d="M0,50 L50,50 L60,20 L80,90 L100,10 L120,70 L130,50 L200,50" 
@@ -64,12 +64,9 @@ export default function Protocol() {
         if (i === protocols.length - 1) return; // Last card doesn't squish
 
         ScrollTrigger.create({
-          trigger: card,
-          start: "top top",
-          endTrigger: cardsRef.current[i + 1],
-          end: "top top",
-          pin: true,
-          pinSpacing: false,
+          trigger: cardsRef.current[i + 1],
+          start: "top bottom", // Start animating when the next card enters the viewport
+          end: "top 96px", // Finish animating when next card reaches its sticky position
           animation: gsap.to(card, {
             scale: 0.9,
             opacity: 0.5,
