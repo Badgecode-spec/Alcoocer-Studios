@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #2a0845; /* Dark purple base */
+  background: #2a1100; /* Dark orange/brown base */
   z-index: 0;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .blob-1 {
-  background: #ff2a5f; /* Pinkish Red */
+  background: #ff4500; /* Orange Red */
   width: 60vw;
   height: 60vw;
   top: -10%;
@@ -28,7 +28,7 @@
 }
 
 .blob-2 {
-  background: #ff7b00; /* Warm Orange */
+  background: #ff8c00; /* Dark Orange */
   width: 50vw;
   height: 50vw;
   top: 40%;
@@ -38,7 +38,7 @@
 }
 
 .blob-3 {
-  background: #9d00ff; /* Vibrant Purple */
+  background: #ffd700; /* Gold/Yellow */
   width: 70vw;
   height: 70vw;
   bottom: -20%;
@@ -48,7 +48,7 @@
 }
 
 .blob-4 {
-  background: #ff007b; /* Bright Magenta */
+  background: #ff6347; /* Tomato Red */
   width: 45vw;
   height: 45vw;
   top: 10%;
