@@ -28,13 +28,8 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-[100dvh] w-full flex items-end pb-12 md:pb-16 px-6 md:px-16"
     >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full overflow-hidden bg-dark">
-        </div>
-        {/* Heavy primary to black gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-primary/80 to-transparent mix-blend-multiply opacity-90"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
+      {/* Background with Dark Base */}
+      <div className="absolute inset-0 z-0 bg-dark">
       </div>
 
       <div className="relative z-10 max-w-4xl text-[#F5F3EE]">
