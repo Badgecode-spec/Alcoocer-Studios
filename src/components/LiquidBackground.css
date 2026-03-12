@@ -11,6 +11,7 @@
   /* Hardware-accelerated gradients seamlessly replace blurry artifacts */
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  will-change: transform;
 }
 
 .blob-1 {

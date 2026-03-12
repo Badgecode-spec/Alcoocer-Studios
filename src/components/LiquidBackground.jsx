@@ -10,41 +10,32 @@ export default function LiquidBackground() {
   const blob4Ref = useRef(null);
 
   useEffect(() => {
+    // Create highly optimized quickTo functions for 60/120fps performance
+    // This bypasses the tween creation overhead on every single pixel movement
+    const xSet1 = gsap.quickTo(blob1Ref.current, "x", { duration: 2, ease: "power2.out" });
+    const ySet1 = gsap.quickTo(blob1Ref.current, "y", { duration: 2, ease: "power2.out" });
+    
+    const xSet2 = gsap.quickTo(blob2Ref.current, "x", { duration: 2.5, ease: "power2.out" });
+    const ySet2 = gsap.quickTo(blob2Ref.current, "y", { duration: 2.5, ease: "power2.out" });
+    
+    const xSet3 = gsap.quickTo(blob3Ref.current, "x", { duration: 3, ease: "power2.out" });
+    const ySet3 = gsap.quickTo(blob3Ref.current, "y", { duration: 3, ease: "power2.out" });
+    
+    const xSet4 = gsap.quickTo(blob4Ref.current, "x", { duration: 3.5, ease: "power2.out" });
+    const ySet4 = gsap.quickTo(blob4Ref.current, "y", { duration: 3.5, ease: "power2.out" });
+
     const handleMouseMove = (e) => {
       if (!containerRef.current) return;
       
-      const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 0.5) * 2; // Range -1 to 1
-      const yPos = (clientY / window.innerHeight - 0.5) * 2; // Range -1 to 1
+      // Fast calculations, no layout thrashing
+      const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
+      const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
 
-      // Subtle parallax movement for the true 4K James Turrell lighting
-      gsap.to(blob1Ref.current, {
-        x: xPos * 40,
-        y: yPos * 40,
-        duration: 2,
-        ease: "power2.out"
-      });
-      
-      gsap.to(blob2Ref.current, {
-        x: xPos * -60,
-        y: yPos * -60,
-        duration: 2.5,
-        ease: "power2.out"
-      });
-      
-      gsap.to(blob3Ref.current, {
-        x: xPos * 30,
-        y: yPos * 30,
-        duration: 3,
-        ease: "power2.out"
-      });
-      
-      gsap.to(blob4Ref.current, {
-        x: xPos * -40,
-        y: yPos * -40,
-        duration: 3.5,
-        ease: "power2.out"
-      });
+      // Directly pipe values into the quickTo instances
+      xSet1(xPos * 40); ySet1(yPos * 40);
+      xSet2(xPos * -60); ySet2(yPos * -60);
+      xSet3(xPos * 30); ySet3(yPos * 30);
+      xSet4(xPos * -40); ySet4(yPos * -40);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
