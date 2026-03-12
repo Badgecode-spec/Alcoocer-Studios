@@ -3,16 +3,35 @@ import React, { useState } from 'react';
 export default function Contact() {
   const [status, setStatus] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Simulate sending form data
+    setStatus('sending');
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log("Sending to pablo@[your-email].com:", data);
 
-    setStatus('success');
-    e.target.reset();
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/alcocerstudios@yahoo.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: `New Lead: ${data.businessName} - ${data.businessType}`,
+        })
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        e.target.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
 
     setTimeout(() => setStatus(''), 5000);
   };
@@ -74,15 +93,21 @@ export default function Contact() {
 
           <button 
             type="submit"
-            className="mt-4 bg-primary text-[#F5F3EE] py-5 rounded-full font-heading font-bold text-xl tracking-wide hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 w-full"
+            disabled={status === 'sending'}
+            className="mt-4 bg-primary text-[#F5F3EE] py-5 rounded-full font-heading font-bold text-xl tracking-wide hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 w-full disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
-            Start Your Website
+            {status === 'sending' ? 'Sending...' : 'Start Your Website'}
           </button>
 
           {status === 'success' && (
-            <div className="mt-4 text-center font-body text-white bg-white/10 py-3 rounded-lg border border-white/30">
+            <div className="mt-4 text-center font-body text-white bg-green-500/20 py-3 rounded-lg border border-green-500/30">
               Thanks! I'll reach out within 24 hours.
+            </div>
+          )}
+          {status === 'error' && (
+            <div className="mt-4 text-center font-body text-white bg-red-500/20 py-3 rounded-lg border border-red-500/30">
+              Oops! Something went wrong. Please try again.
             </div>
           )}
 
