@@ -5,21 +5,21 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #2a1100; /* Dark orange/brown base */
+  background: #0a0604; /* Very dark bronze/obsidian base */
   z-index: 0;
 }
 
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px); /* Creates the liquid blend effect */
+  filter: blur(120px); /* Increased blur for smoother, glass-like blending */
   animation: moveBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.85;
+  opacity: 0.5; /* Lowered opacity for a subtle, premium look */
   mix-blend-mode: screen;
 }
 
 .blob-1 {
-  background: #ff4500; /* Orange Red */
+  background: #d48c3e; /* Muted glowing copper */
   width: 60vw;
   height: 60vw;
   top: -10%;
@@ -28,7 +28,7 @@
 }
 
 .blob-2 {
-  background: #ff8c00; /* Dark Orange */
+  background: #934b15; /* Deep rust/burnt orange */
   width: 50vw;
   height: 50vw;
   top: 40%;
@@ -38,7 +38,7 @@
 }
 
 .blob-3 {
-  background: #ffd700; /* Gold/Yellow */
+  background: #e7b056; /* Soft champagne gold */
   width: 70vw;
   height: 70vw;
   bottom: -20%;
@@ -48,7 +48,7 @@
 }
 
 .blob-4 {
-  background: #ff6347; /* Tomato Red */
+  background: #5e290b; /* Very deep warm umber */
   width: 45vw;
   height: 45vw;
   top: 10%;
