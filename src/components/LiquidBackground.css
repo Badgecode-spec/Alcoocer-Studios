@@ -1,84 +1,85 @@
 .liquid-bg-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   overflow: hidden;
-  background: #020617; /* Very deep, premium midnight blue */
+  background: #a91b00; /* Deep, luxurious cadmium red base */
   z-index: 0;
 }
 
 .blob {
   position: absolute;
+  /* Hardware-accelerated gradients seamlessly replace blurry artifacts */
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  filter: blur(100px); /* Smooth, cloud-like blend */
-  animation: moveBlob 22s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.65;
-  mix-blend-mode: screen;
 }
 
 .blob-1 {
-  background: #3b82f6; /* Clear, rich royal blue */
-  width: 65vw;
-  height: 65vw;
-  top: -15%;
-  left: -10%;
-  animation-duration: 25s;
+  /* Skyspace Blue Aperture */
+  background: radial-gradient(circle, rgba(59,130,246,1) 0%, rgba(59,130,246,0.95) 20%, rgba(59,130,246,0) 70%);
+  width: 140vw;
+  height: 140vw;
+  top: 0%;
+  left: 50%;
+  animation: breatheSky 14s infinite alternate ease-in-out;
+  z-index: 3;
 }
 
 .blob-2 {
-  background: #f97316; /* Clean, warm sunset orange */
-  width: 55vw;
-  height: 55vw;
-  top: 35%;
-  left: 45%;
-  animation-duration: 22s;
-  animation-delay: -5s;
+  /* Intense, glowing fluorescent orange halo */
+  background: radial-gradient(circle, rgba(255,102,0,1) 0%, rgba(255,102,0,0) 65%);
+  width: 180vw;
+  height: 180vw;
+  top: 25%;
+  left: 50%;
+  animation: breatheHalo 18s infinite alternate ease-in-out;
+  z-index: 2;
+  mix-blend-mode: color-dodge;
 }
 
 .blob-3 {
-  background: #0ea5e9; /* Luminous cyan/light blue */
-  width: 75vw;
-  height: 75vw;
-  bottom: -25%;
-  left: -15%;
-  animation-duration: 28s;
-  animation-delay: -10s;
-}
-
-.blob-4 {
-  background: #fef08a; /* Soft, ethereal pale golden light */
-  width: 45vw;
-  height: 45vw;
-  top: 10%;
-  right: -10%;
-  animation-duration: 18s;
-  animation-delay: -15s;
-}
-
-/* Subtle grain overlay for texture */
-.liquid-overlay {
-  position: absolute;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.15;
-  mix-blend-mode: overlay;
-  pointer-events: none;
+  /* Bright yellow optical core */
+  background: radial-gradient(circle, rgba(255,193,7,0.7) 0%, rgba(255,193,7,0) 55%);
+  width: 120vw;
+  height: 120vw;
+  top: 40%;
+  left: 50%;
+  animation: breatheGlow 12s infinite alternate ease-in-out;
   z-index: 1;
 }
 
-@keyframes moveBlob {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(10vw, -10vh) scale(1.1);
-  }
-  66% {
-    transform: translate(-10vw, 15vh) scale(0.9);
-  }
-  100% {
-    transform: translate(5vw, 5vh) scale(1.05);
-  }
+.blob-4 {
+  /* Deep warm shadow */
+  background: radial-gradient(circle, rgba(160,0,30,1) 0%, rgba(160,0,30,0) 70%);
+  width: 150vw;
+  height: 150vw;
+  top: 100%;
+  left: 50%;
+  z-index: 1;
 }
+
+/* Optimal dithering noise for a '4K' banding-free gradient */
+.liquid-overlay {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes breatheSky {
+  0% { transform: translate(-50%, -50%) scale(1) translateY(-5%); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(1.03) translateY(2%); opacity: 1; }
+}
+
+@keyframes breatheHalo {
+  0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+}
+
+@keyframes breatheGlow {
+  0% { transform: translate(-50%, -50%) scale(0.9); }
+  100% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
