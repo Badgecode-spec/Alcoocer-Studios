@@ -9,7 +9,7 @@ export default function Pricing() {
   ];
 
   const retainerPlans = [
-    { name: "No Retainer", price: "$0", desc: "Full ownership transfer of the website. No subscription, but no ongoing updates or support provided.", highlight: false },
+    { name: "No Retainer", price: "$0", desc: "Full ownership transfer of the website. No subscription.", highlight: false },
     { name: "Standard Retainer", price: "$89", desc: "Unlimited edits, updates, priority support, hosting included.", highlight: true },
     { name: "Premium Retainer", price: "$150", desc: "Unlimited edits + 1 new feature/month + analytics review + weekly check-in + content changes. For clients needing more features.", highlight: false }
   ];
