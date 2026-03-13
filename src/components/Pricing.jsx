@@ -9,6 +9,7 @@ export default function Pricing() {
   ];
 
   const retainerPlans = [
+    { name: "No Retainer", price: "$0", desc: "Full ownership transfer of the website. No subscription, but no ongoing updates or support provided.", highlight: false },
     { name: "Standard Retainer", price: "$89", desc: "Unlimited edits, updates, priority support, hosting included.", highlight: true },
     { name: "Premium Retainer", price: "$150", desc: "Unlimited edits + 1 new feature/month + analytics review + weekly check-in + content changes. For clients needing more features.", highlight: false }
   ];
@@ -34,7 +35,7 @@ export default function Pricing() {
 
         <div className="text-left">
           <h3 className="font-heading font-bold text-2xl text-dark tracking-tight mb-8 pl-4 border-l-4 border-accent">2. Monthly Retainer (Recommended)</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {retainerPlans.map((plan, i) => (
               <div key={i} className={`border rounded-[2rem] p-8 shadow-md transition-colors duration-300 ${plan.highlight ? 'bg-dark text-white border-dark' : 'bg-white text-dark border-borderlight hover:border-dark'}`}>
                 <div className="flex justify-between items-start mb-2">
