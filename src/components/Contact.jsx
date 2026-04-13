@@ -7,7 +7,7 @@ export default function Contact() {
         
         <div className="text-center mb-16">
           <h2 className="font-heading font-bold text-5xl md:text-7xl tracking-tighter mb-6">¿Listo Para Avanzar?</h2>
-          <p className="font-body text-[#F5F3EE]/80 text-xl max-w-xl mx-auto">Compárteme tus datos. Evaluamos tu panorama y empezamos a maquetar tu proyecto, sin compromisos.</p>
+          <p className="font-body text-[#F5F3EE]/80 text-xl max-w-xl mx-auto">Compártenos tus datos. Evaluamos tu panorama y empezamos a maquetar tu proyecto, sin compromisos.</p>
         </div>
 
         <form action="https://formsubmit.co/alcocerstudios@yahoo.com" method="POST" className="bg-dark/20 p-8 md:p-12 rounded-[3xl] shadow-inner backdrop-blur-sm border border-white/10 flex flex-col gap-6">

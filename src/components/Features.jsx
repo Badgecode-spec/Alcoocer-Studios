@@ -214,7 +214,7 @@ export default function Features() {
           <ShufflerCard />
           <div className="mt-8 text-center px-4">
             <h3 className="font-heading font-bold text-2xl text-dark mb-2">Desarrollo Acelerado.</h3>
-            <p className="font-body text-secondary text-sm">Olvídate de las agencias de meses. Entrego tu sitio en una semana, totalmente optimizado y operando. Pura ventaja competitiva.</p>
+            <p className="font-body text-secondary text-sm">Olvídate de las agencias tradicionales. Entregamos tu sitio en una semana, totalmente optimizado y operando. Pura ventaja competitiva.</p>
           </div>
         </div>
 

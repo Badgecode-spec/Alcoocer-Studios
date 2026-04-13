@@ -8,7 +8,7 @@ const protocols = [
   {
     step: "01",
     title: "El Diagnóstico",
-    desc: "Analizo tu modelo de negocio y armo la arquitectura ideal para escalar tus ventas. Nada de meses de espera, esto toma horas.",
+    desc: "Analizamos tu modelo de negocio y armamos la arquitectura ideal para escalar tus ventas. Nada de semanas de espera, esto toma horas.",
     AnimationContent: () => (
       <div className="w-full h-full flex items-center justify-center relative">
         <div className="absolute w-64 h-64 border border-accent/20 rounded-full animate-spin-slow"></div>
@@ -22,7 +22,7 @@ const protocols = [
   {
     step: "02",
     title: "El Desarrollo",
-    desc: "Tecnología en estado puro. Diseño un activo digital que no solo se ve de primer nivel, sino que funciona como reloj suizo.",
+    desc: "Tecnología en estado puro. Diseñamos un activo digital de primer nivel. Es una infraestructura real de conversiones que funciona como reloj suizo.",
     AnimationContent: () => (
       <div className="w-full h-full flex items-center justify-center relative overflow-hidden bg-dark rounded-3xl p-8">
         <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-2 opacity-20">
@@ -37,7 +37,7 @@ const protocols = [
   {
     step: "03",
     title: "El Lanzamiento",
-    desc: "Al aire en 5 a 7 días. Fluidez total. Por $89 USD al mes absorbo todo el mantenimiento técnico y mejoras a futuro.",
+    desc: "Despliegue operativo en 5 a 7 días. Transición fluida. Te entregamos las llaves de la infraestructura o nos encargamos del mantenimiento.",
     AnimationContent: () => (
       <div className="w-full h-full flex items-center justify-center relative bg-dark rounded-3xl">
         <svg viewBox="0 0 200 100" className="w-full h-32 stroke-accent stroke-[3] fill-none" strokeLinecap="round" strokeLinejoin="round">
@@ -84,7 +84,7 @@ export default function Protocol() {
     <section id="protocol" ref={containerRef} className="relative w-full bg-background pt-24 pb-32">
       <div className="text-center mb-16 px-6">
         <h2 className="font-heading font-bold text-5xl text-dark tracking-tight">Planes de Ejecución</h2>
-        <p className="font-body text-secondary mt-4 max-w-xl mx-auto">Ingeniería y fluidez en un mismo lugar. Mi framework para darte resultados impecables sin perder el tiempo.</p>
+        <p className="font-body text-secondary mt-4 max-w-xl mx-auto">Ingeniería y fluidez en un mismo lugar. Nuestro framework para darte resultados impecables sin perder el tiempo.</p>
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-4 md:px-8">
