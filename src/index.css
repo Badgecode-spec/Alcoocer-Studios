@@ -5,7 +5,12 @@
 @layer base {
   body {
     @apply bg-background text-dark font-body m-0 p-0 antialiased overflow-x-hidden;
-    cursor: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: none;
+    }
   }
 
   /* Global Noise Overlay */

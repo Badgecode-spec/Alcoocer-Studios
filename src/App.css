@@ -23,3 +23,9 @@
   background: white;
   border-radius: 50%;
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
