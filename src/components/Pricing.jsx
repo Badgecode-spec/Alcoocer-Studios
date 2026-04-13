@@ -8,7 +8,7 @@ export default function Pricing() {
   ];
 
   const retainerPlans = [
-    { name: "Cambios sueltos", price: "Desde $1,000", desc: "Ajustes, evoluciones o mejoras detalladas sobre una infraestructura preexistente o sitio activo.", highlight: false },
+    { name: "Cambios sueltos", price: "Desde $1,500", desc: "Ajustes, evoluciones o mejoras detalladas sobre una infraestructura preexistente o sitio activo.", highlight: false },
     { name: "Mantenimiento / Retainer", price: "$1,200", desc: "Esquema operativo mensual. Cambios pequeños continuos, ajustes de contenido y soporte técnico preventivo para tu negocio.", highlight: false },
     { name: "Sin Mantenimiento", price: "$0", desc: "Transferencia total de la infraestructura. El cliente asume la responsabilidad operativa y de hosting.", highlight: false }
   ];
