@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import LiquidBackground from './LiquidBackground';
 
 export default function Hero() {
@@ -9,6 +9,7 @@ export default function Hero() {
   const text2Ref = useRef(null);
   const text3Ref = useRef(null);
   const ctaRef = useRef(null);
+  const scrollArrowRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -20,6 +21,22 @@ export default function Hero() {
         ease: "power3.out",
         delay: 0.2
       });
+
+      // Floating arrow animation
+      gsap.fromTo(scrollArrowRef.current, 
+        { opacity: 0 },
+        { opacity: 1, duration: 1, delay: 1.5, ease: "power2.out" }
+      );
+      
+      gsap.to(scrollArrowRef.current, {
+        y: 15,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        duration: 1.5,
+        delay: 1.5
+      });
+      
     }, containerRef);
     return () => ctx.revert();
   }, []);
@@ -68,6 +85,16 @@ export default function Hero() {
           </a>
         </div>
       </div>
+
+      {/* Floating Scroll Arrow */}
+      <a 
+        href="#features"
+        ref={scrollArrowRef} 
+        className="absolute bottom-8 right-8 md:bottom-12 md:right-16 text-[#F5F3EE]/40 hover:text-white transition-colors duration-300 z-20 cursor-pointer p-4"
+        aria-label="Scroll down"
+      >
+        <ChevronDown size={36} strokeWidth={1.5} />
+      </a>
     </section>
   );
 }
