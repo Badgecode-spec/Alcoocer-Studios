@@ -46,7 +46,7 @@ export default function Hero() {
             ref={text2Ref}
             className="font-drama italic text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-2"
           >
-            Websites That Turn Visitors Into Customers
+            Sitios Web Diseñados Para Cerrar Clientes.
           </span>
         </h1>
         
@@ -54,7 +54,7 @@ export default function Hero() {
           ref={text3Ref}
           className="font-mono text-sm tracking-widest text-[#F5F3EE]/60 font-light mt-4"
         >
-          By Pablo Alcocer
+          Por Pablo Alcocer
         </p>
 
         <div ref={ctaRef} className="mt-12 flex items-center">
@@ -63,7 +63,7 @@ export default function Hero() {
             className="group flex items-center space-x-3 bg-accent text-[#F5F3EE] px-8 py-4 rounded-full font-heading font-bold tracking-wider hover:scale-[1.03] transition-transform duration-300"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
-            <span>Start Your Website</span>
+            <span>Hablemos de tu Proyecto</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>

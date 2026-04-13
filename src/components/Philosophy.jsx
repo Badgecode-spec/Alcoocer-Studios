@@ -62,19 +62,19 @@ export default function Philosophy() {
       <div className="relative z-10 max-w-5xl text-center space-y-16">
         <div ref={text1Ref}>
           <p className="font-heading text-secondary text-xl md:text-3xl tracking-tight mb-2">
-            Most agencies focus on:
+            El enfoque de siempre:
           </p>
           <p className="font-heading text-[#F5F3EE] text-2xl md:text-4xl font-bold tracking-tight">
-            endless revisions and complex retainers.
+            juntas interminables y propuestas sin rumbo.
           </p>
         </div>
 
         <div ref={text2Ref}>
           <p className="font-heading text-secondary text-xl md:text-3xl tracking-tight mb-4">
-            We focus on:
+            Nuestro enfoque:
           </p>
           <p className="font-drama italic text-accent text-5xl md:text-8xl leading-[1.1] tracking-tight">
-            pure business conversion.
+            conversión, estatus y retorno sólido.
           </p>
         </div>
       </div>

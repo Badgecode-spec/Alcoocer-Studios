@@ -31,8 +31,8 @@ export default function Archive() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
-            <h2 className="font-heading font-bold text-5xl md:text-6xl tracking-tighter mb-4">The Archive.</h2>
-            <p className="font-drama italic text-secondary text-2xl max-w-xl">Live, interactive technical explorations. Experience the code natively—built, not drawn.</p>
+            <h2 className="font-heading font-bold text-5xl md:text-6xl tracking-tighter mb-4">El Portafolio.</h2>
+            <p className="font-drama italic text-secondary text-2xl max-w-xl">Desarrollos e infraestructuras operativas. Navega los sitios nativamente, no son puros renders visuales.</p>
           </div>
           
           {/* Device Toggles */}
@@ -58,7 +58,7 @@ export default function Archive() {
                 onClick={() => setActiveSite(site.url)}
                 className={`text-left p-6 rounded-3xl border transition-all duration-300 ${activeSite === site.url ? 'bg-white/10 border-accent shadow-[0_0_30px_rgba(230,59,46,0.1)]' : 'bg-transparent border-white/10 hover:border-white/30 hover:bg-white/5'}`}
               >
-                <div className="font-mono text-accent text-xs tracking-widest font-bold mb-2 uppercase">Project {site.id.toString().padStart(2, '0')}</div>
+                <div className="font-mono text-accent text-xs tracking-widest font-bold mb-2 uppercase">Proyecto {site.id.toString().padStart(2, '0')}</div>
                 <h3 className="font-heading font-bold text-2xl mb-1">{site.name}</h3>
                 <p className="font-body text-secondary text-sm">{site.desc}</p>
               </button>

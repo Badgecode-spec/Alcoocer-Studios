@@ -20,9 +20,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Services', href: '#features' },
-    { name: 'Process', href: '#protocol' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Servicios', href: '#features' },
+    { name: 'El Protocolo', href: '#protocol' },
+    { name: 'Cotizador', href: '#pricing' },
   ];
 
   return (
@@ -51,7 +51,7 @@ export default function Navbar() {
             className="hidden sm:inline-block relative overflow-hidden group px-6 py-2.5 rounded-full bg-accent text-[#F5F3EE] font-heading font-bold text-sm tracking-wide transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
-            <span className="relative z-10">Start Project</span>
+            <span className="relative z-10">Iniciar Proyecto</span>
             <div className="absolute inset-0 bg-dark transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></div>
           </a>
 
@@ -82,7 +82,7 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="bg-accent text-[#F5F3EE] py-4 rounded-full text-center font-heading font-bold text-xl active:scale-[0.98] transition-all shadow-lg"
             >
-              Start Your Website
+              Iniciar Proyecto
             </a>
           </div>
         </div>

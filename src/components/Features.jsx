@@ -7,9 +7,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ShufflerCard = () => {
   const [cards, setCards] = useState([
-    { id: 1, title: '5-7 Day Delivery', subtitle: 'Rapid Deployment', z: 3, scale: 1, y: 0, opacity: 1 },
-    { id: 2, title: 'Conversion Protocol', subtitle: 'Accelerated Build', z: 2, scale: 0.95, y: -20, opacity: 0.7 },
-    { id: 3, title: 'Zero Delays', subtitle: 'Immediate ROI', z: 1, scale: 0.9, y: -40, opacity: 0.4 },
+    { id: 1, title: 'En 5-7 Días', subtitle: 'Deployment Inmediato', z: 3, scale: 1, y: 0, opacity: 1 },
+    { id: 2, title: 'Protocolo Activo', subtitle: 'Desarrollo Eficiente', z: 2, scale: 0.95, y: -20, opacity: 0.7 },
+    { id: 3, title: 'Cero Fricción', subtitle: 'ROI Inmediato', z: 1, scale: 0.9, y: -40, opacity: 0.4 },
   ]);
 
   useEffect(() => {
@@ -56,13 +56,13 @@ const ShufflerCard = () => {
 };
 
 const TYPEWRITER_MESSAGES = [
-  "> System initialized...",
-  "> Hosting enabled.",
-  "> Maintenance active.",
-  "> Unlimited support engaged.",
-  "> $89/Mo complete package.",
-  "> Zero hidden fees detected.",
-  "> Awaiting command..."
+  "> Evaluando tu negocio...",
+  "> Optimizando presencia digital...",
+  "> Protocolo de ventas activo...",
+  "> Conectando agenda a WhatsApp...",
+  "> Host y soporte blindados.",
+  "> Cero costos ocultos.",
+  "> ¿Listo para escalar?"
 ];
 
 const TypewriterCard = () => {
@@ -95,7 +95,7 @@ const TypewriterCard = () => {
   return (
     <div className="h-64 w-full bg-dark rounded-[2rem] p-6 text-[#F5F3EE] font-mono text-sm leading-relaxed overflow-hidden flex flex-col shadow-inner">
       <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
-        <span className="text-secondary text-xs uppercase tracking-wider font-bold">Live Feed</span>
+        <span className="text-secondary text-xs uppercase tracking-wider font-bold">Terminal en Vivo</span>
         <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
       </div>
       <div className="flex-1 whitespace-pre-wrap flex flex-col justify-end">
@@ -146,7 +146,7 @@ const SchedulerCard = () => {
   return (
     <div ref={containerRef} className="relative h-64 w-full bg-white border border-borderlight rounded-[2rem] p-6 shadow-sm flex flex-col justify-between">
       <div>
-        <h4 className="font-heading font-bold text-lg mb-4 text-dark text-center">Protocol Active</h4>
+        <h4 className="font-heading font-bold text-lg mb-4 text-dark text-center">Agendado Automático</h4>
         <div className="flex justify-between mt-2">
           {['S','M','T','W','T','F','S'].map((day, i) => (
             <div 
@@ -165,7 +165,7 @@ const SchedulerCard = () => {
           ref={saveBtnRef}
           className="bg-primary text-[#F5F3EE] px-4 py-1.5 rounded-full font-heading text-sm shadow-md"
         >
-          Capture Lead
+          Capturar Cliente
         </div>
       </div>
 
@@ -203,8 +203,8 @@ export default function Features() {
   return (
     <section id="features" ref={sectionRef} className="py-32 px-6 md:px-16 bg-background max-w-7xl mx-auto">
       <div className="text-center mb-20 max-w-2xl mx-auto">
-        <h2 className="font-heading font-bold text-4xl md:text-5xl text-dark mb-6 tracking-tight">Functional Artifacts</h2>
-        <p className="font-body text-secondary text-lg">Designed for predictability. Built for extreme conversion. Every standard of web development accelerated.</p>
+        <h2 className="font-heading font-bold text-4xl md:text-5xl text-dark mb-6 tracking-tight">Ingeniería de Conversión.</h2>
+        <p className="font-body text-secondary text-lg">Diseño con propósito. Enfocados totalmente en el posicionamiento y la rentabilidad de tu negocio, sin procesos lentos.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -213,8 +213,8 @@ export default function Features() {
         <div className="feature-card flex flex-col">
           <ShufflerCard />
           <div className="mt-8 text-center px-4">
-            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Built in Days.</h3>
-            <p className="font-body text-secondary text-sm">Competitors take 4-8 weeks. With our streamlined process, we deliver service websites in 5-7 days. Pure competitive advantage.</p>
+            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Desarrollo Acelerado.</h3>
+            <p className="font-body text-secondary text-sm">Olvídate de las agencias de meses. Entrego tu sitio en una semana, totalmente optimizado y operando. Pura ventaja competitiva.</p>
           </div>
         </div>
 
@@ -222,8 +222,8 @@ export default function Features() {
         <div className="feature-card flex flex-col">
           <TypewriterCard />
           <div className="mt-8 text-center px-4">
-            <h3 className="font-heading font-bold text-2xl text-dark mb-2">$89/Month Retainer.</h3>
-            <p className="font-body text-secondary text-sm">Updates, edits, hosting, support included. No hidden fees. Complete predictability for your business.</p>
+            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Retainer de $89 USD.</h3>
+            <p className="font-body text-secondary text-sm">Actualizaciones, hosting y pases a producción. Cero costos sorpresa. Predictibilidad total para tu negocio.</p>
           </div>
         </div>
 
@@ -231,8 +231,8 @@ export default function Features() {
         <div className="feature-card flex flex-col">
           <SchedulerCard />
           <div className="mt-8 text-center px-4">
-            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Converts Visitors.</h3>
-            <p className="font-body text-secondary text-sm">Not just aesthetics. Mobile-optimized, fast-loading real ROI. We convert passive traffic into booked clients.</p>
+            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Alto Nivel de Conversión.</h3>
+            <p className="font-body text-secondary text-sm">No es solo estética premium. Estructura celular optimizada. Convertimos simple tráfico pasivo en agendas llenas.</p>
           </div>
         </div>
 

@@ -3,25 +3,24 @@ import { Check } from 'lucide-react';
 
 export default function Pricing() {
   const buildPlans = [
-    { name: "1-Page Website", price: "$599", desc: "Single-page: landing, contact form, CTA optimized. Entry point, quick delivery." },
-    { name: "3-5 Page Website", price: "$999", desc: "Multi-page: home, services, about, contact, portfolio. Standard small business site." },
-    { name: "6+ Page Website", price: "$2,499", desc: "Complex: advanced features, gallery, booking system. Full custom build with integrations." }
+    { name: "Sitio Web", price: "Desde $5,000", desc: "La mayoría de los proyectos terminan entre $6,000 y $10,000 MXN dependiendo del tamaño. Diseño desde cero, versión móvil, optimización de conversiones y contacto integrado." },
+    { name: "Sitio Web Premium", price: "$10,000 – $15,000", desc: "Para negocios que requieren mayor impacto visual y operativo. Múltiples secciones, experiencia de usuario refinada y arquitectura de conversión avanzada." },
+    { name: "Cambios sueltos", price: "Desde $1,000", desc: "Ajustes, evoluciones o mejoras detalladas sobre una infraestructura preexistente o sitio activo." }
   ];
 
   const retainerPlans = [
-    { name: "No Retainer", price: "$0", desc: "Full ownership transfer of the website. No subscription.", highlight: false },
-    { name: "Standard Retainer", price: "$89", desc: "Unlimited edits, updates, priority support, hosting included.", highlight: true },
-    { name: "Premium Retainer", price: "$150", desc: "Unlimited edits + 1 new feature/month + analytics review + weekly check-in + content changes. For clients needing more features.", highlight: false }
+    { name: "Mantenimiento / Retainer", price: "$1,000 – $2,000", desc: "Esquema operativo recomendado. Cambios pequeños continuos, ajustes de contenido y soporte técnico preventivo para tu negocio.", highlight: true },
+    { name: "Sin Mantenimiento", price: "$0", desc: "Transferencia total de la infraestructura. El cliente asume la responsabilidad operativa y de hosting.", highlight: false }
   ];
 
   return (
     <section id="pricing" className="bg-background py-32 px-6 flex justify-center">
       <div className="max-w-6xl w-full text-center">
-        <h2 className="font-heading font-bold text-4xl md:text-5xl text-dark mb-4 tracking-tight">Transparent Investment.</h2>
-        <p className="font-body text-secondary text-lg mb-16 max-w-2xl mx-auto">Select your baseline build architecture, then choose the level of continuous technical support you require.</p>
+        <h2 className="font-heading font-bold text-4xl md:text-5xl text-dark mb-4 tracking-tight">Invest & ROI.</h2>
+        <p className="font-body text-secondary text-lg mb-16 max-w-2xl mx-auto">Selecciona la infraestructura ideal para arrancar, y define tu nivel operativo a futuro.</p>
 
         <div className="text-left mb-16">
-          <h3 className="font-heading font-bold text-2xl text-dark tracking-tight mb-8 pl-4 border-l-4 border-accent">1. Website Development (One-Time)</h3>
+          <h3 className="font-heading font-bold text-2xl text-dark tracking-tight mb-8 pl-4 border-l-4 border-accent">1. Setup de tu Sitio (Pago Único)</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {buildPlans.map((plan, i) => (
               <div key={i} className="bg-white border border-borderlight rounded-[2rem] p-8 shadow-md hover:border-dark transition-colors duration-300">
@@ -34,15 +33,15 @@ export default function Pricing() {
         </div>
 
         <div className="text-left">
-          <h3 className="font-heading font-bold text-2xl text-dark tracking-tight mb-8 pl-4 border-l-4 border-accent">2. Monthly Retainer (Recommended)</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h3 className="font-heading font-bold text-2xl text-dark tracking-tight mb-8 pl-4 border-l-4 border-accent">2. Tu Retainer Mensual (Opcional)</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {retainerPlans.map((plan, i) => (
               <div key={i} className={`border rounded-[2rem] p-8 shadow-md transition-colors duration-300 ${plan.highlight ? 'bg-dark text-white border-dark' : 'bg-white text-dark border-borderlight hover:border-dark'}`}>
                 <div className="flex justify-between items-start mb-2">
                   <h4 className="font-heading font-bold text-xl">{plan.name}</h4>
-                  {plan.highlight && <span className="text-xs font-mono font-bold bg-accent text-[#F5F3EE] px-3 py-1 rounded-full uppercase tracking-widest">Best Value</span>}
+                  {plan.highlight && <span className="text-xs font-mono font-bold bg-accent text-[#F5F3EE] px-3 py-1 rounded-full uppercase tracking-widest">Recomendado</span>}
                 </div>
-                <div className="font-mono text-3xl font-bold mb-4">{plan.price}<span className="text-lg opacity-60 ml-1">/mo</span></div>
+                <div className="font-mono text-3xl font-bold mb-4">{plan.price}<span className="text-lg opacity-60 ml-1">{plan.price !== "$0" ? "/mo" : ""}</span></div>
                 <p className={`font-body text-sm leading-relaxed ${plan.highlight ? 'text-white/80' : 'text-secondary'}`}>{plan.desc}</p>
               </div>
             ))}
@@ -55,7 +54,7 @@ export default function Pricing() {
             className="inline-block bg-primary text-[#F5F3EE] px-10 py-5 rounded-full font-heading font-bold text-xl hover:scale-[1.03] transition-transform duration-300 shadow-xl"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
-            Start Your Project
+            Cuéntame de tu negocio
           </a>
         </div>
 
