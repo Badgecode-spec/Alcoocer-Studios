@@ -60,8 +60,8 @@ const TYPEWRITER_MESSAGES = [
   "> Optimizando presencia digital...",
   "> Protocolo de ventas activo...",
   "> Conectando agenda a WhatsApp...",
-  "> Host y soporte blindados.",
-  "> Cero costos ocultos.",
+  "> Modalidad de soporte flexible...",
+  "> Evaluando flat-fee u operación continua.",
   "> ¿Listo para escalar?"
 ];
 
@@ -222,8 +222,8 @@ export default function Features() {
         <div className="feature-card flex flex-col">
           <TypewriterCard />
           <div className="mt-8 text-center px-4">
-            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Retainer de $89 USD.</h3>
-            <p className="font-body text-secondary text-sm">Actualizaciones, hosting y pases a producción. Cero costos sorpresa. Predictibilidad total para tu negocio.</p>
+            <h3 className="font-heading font-bold text-2xl text-dark mb-2">Mantenimiento Flexible.</h3>
+            <p className="font-body text-secondary text-sm">Retainer mensual para delegar toda la administración continua de tu infraestructura, o un *flat fee* transparente para actualizaciones por evento. Tú decides.</p>
           </div>
         </div>
 
