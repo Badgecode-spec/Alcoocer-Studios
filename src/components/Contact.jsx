@@ -10,11 +10,14 @@ export default function Contact() {
           <p className="font-body text-[#F5F3EE]/80 text-xl max-w-xl mx-auto">Compártenos tus datos. Evaluamos tu panorama y empezamos a maquetar tu proyecto, sin compromisos.</p>
         </div>
 
-        <form action="https://formsubmit.co/alcocerstudios@yahoo.com" method="POST" className="bg-dark/20 p-8 md:p-12 rounded-[3xl] shadow-inner backdrop-blur-sm border border-white/10 flex flex-col gap-6">
+        <form action="https://api.web3forms.com/submit" method="POST" className="bg-dark/20 p-8 md:p-12 rounded-[3xl] shadow-inner backdrop-blur-sm border border-white/10 flex flex-col gap-6">
           
-          {/* FormSubmit Configuration */}
-          <input type="hidden" name="_subject" value="New Website Lead - Alcocer Studios" />
-          <input type="hidden" name="_captcha" value="true" />
+          {/* Web3Forms Configuration */}
+          <input type="hidden" name="access_key" value="defd7f1f-9ef3-4704-a224-e98be941c5c1" />
+          <input type="hidden" name="subject" value="New Website Lead - Alcocer Studios" />
+          <input type="hidden" name="from_name" value="Alcocer Studios Website" />
+          {/* Optional: Add a redirect URL if you want a custom thank you page */}
+          {/* <input type="hidden" name="redirect" value="https://yourwebsite.com/thanks" /> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col">
